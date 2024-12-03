@@ -14,7 +14,7 @@
 @property (nonatomic, strong) UIImageView *icon;
 @property (nonatomic, strong) UILabel *name;
 @property (nonatomic, strong) UIImageView *select;
-@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *cellMaskView;
 
 @end
 
@@ -36,7 +36,7 @@
         self.layer.borderColor = [UIColor doraemon_colorWithHexString:@"#EEEEEE"].CGColor;
         
         [self addSubview:self.centerView];
-        [self addSubview:self.maskView];
+        [self addSubview:self.cellMaskView];
         [self addSubview:self.select];
         
         [self.centerView addSubview:self.icon];
@@ -89,13 +89,13 @@
     return _select;
 }
 
-- (UIView *)maskView{
-    if (!_maskView) {
-        _maskView = [[UIView alloc] initWithFrame:self.bounds];
-        _maskView.backgroundColor = [UIColor whiteColor];
-        _maskView.alpha = 0.5;
+- (UIView *)cellMaskView{
+    if (!_cellMaskView) {
+        _cellMaskView = [[UIView alloc] initWithFrame:self.bounds];
+        _cellMaskView.backgroundColor = [UIColor whiteColor];
+        _cellMaskView.alpha = 0.5;
     }
-    return _maskView;
+    return _cellMaskView;
 }
 
 
@@ -106,14 +106,14 @@
         self.select.hidden = NO;
         if (select) {
             self.select.image = [UIImage doraemon_xcassetImageNamed:@"doraemon_check_circle_fill"];
-            self.maskView.hidden = YES;
+            self.cellMaskView.hidden = YES;
         }else{
             self.select.image = [UIImage doraemon_xcassetImageNamed:@"doraemon_check_circle"];
-            self.maskView.hidden = NO;
+            self.cellMaskView.hidden = NO;
         }
     }else{
         self.select.hidden = YES;
-        self.maskView.hidden = YES;
+        self.cellMaskView.hidden = YES;
     }
 }
 
